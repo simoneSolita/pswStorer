@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PswStorer</string>
+    <string name="nome_sito_add_credenziale">NOME SITO:</string>
+    <string name="descrizione_sito_add_credenziale">DESCRIZIONE SITO:</string>
+    <string name="password_add_credenziale">PASSWORD:</string>
+    <string name="inserisci_nome_sito">Inserisci nome sito</string>
+    <string name="inserisci_descrizione_sito">Inserisci descrizione sito</string>
+    <string name="inserisci_password_sito">Inserisci password sito</string>
+    <string name="credenziali_breadcrumb">Credenziali</string>
+    <string name="nessun_requestcode_censito">Errore generico risposta</string>
+    <string name="aggiunta_credenziale_ko">Credenziale non aggiunta</string>
 </resources>

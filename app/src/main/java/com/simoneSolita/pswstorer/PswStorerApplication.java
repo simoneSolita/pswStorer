@@ -6,9 +6,15 @@ import android.os.Bundle;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.simonesolita.pswstorer.database.DBManager;
+
 public class PswStorerApplication extends MultiDexApplication {
 
     private static Activity currentActivity;
+
+    public static final String PSWSTORER_PREFS = "PSWSTORER_PREFS";
+
+    public static DBManager dbManager;
 
     public static Activity getCurrentActivity() {
         return currentActivity;
@@ -60,7 +66,18 @@ public class PswStorerApplication extends MultiDexApplication {
             @Override
             public void onActivityPaused(Activity activity) {
             }
-
         });
+
+        openDbAndImportDbIfNotExist();
+    }
+
+    private void openDbAndImportDbIfNotExist() {
+        try {
+            dbManager = new DBManager(this);
+            dbManager.open();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

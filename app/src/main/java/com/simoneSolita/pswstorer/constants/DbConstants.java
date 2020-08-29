@@ -2,6 +2,10 @@ package com.simonesolita.pswstorer.constants;
 
 public class DbConstants {
 
-    public static final String DATABASE_NAME = "pswstorer_db";
-    public static final int DATABASE_VERSION = 1;
+    //tabella credenziale
+    public static final String CREDENZIALE_TABLE = "credenziale";
+    public static final String CREDENZIALE_TABLE_UUID = "uuid";
+    public static final String CREDENZIALE_TABLE_DESCRIZIONE = "descrizione";
+    public static final String CREDENZIALE_TABLE_NOME = "nome";
+    public static final String CREDENZIALE_TABLE_VALORE = "valore";
 }

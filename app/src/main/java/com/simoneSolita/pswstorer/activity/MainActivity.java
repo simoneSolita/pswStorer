@@ -37,10 +37,10 @@ public class MainActivity extends PswStorerbaseActivity {
 //                super.onAuthenticationSucceeded(result);
 //                Toast.makeText(getApplicationContext(),
 //                        "Authentication succeeded!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,CredenzialiListActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+//        Intent intent = new Intent(this,CredenzialiListActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
 //            }
 //
 //            @Override

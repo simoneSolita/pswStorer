@@ -1,5 +1,6 @@
 package com.simonesolita.pswstorer.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,7 @@ import java.util.List;
 public class CredenzialeAdapter extends RecyclerView.Adapter<CredenzialeAdapter.CredenzialeViewHolder> {
 
     private List<Credenziale> credenzialeList = new ArrayList<>();
-
-    public void setCredenziali(List<Credenziale> credenzialis) {
-        this.credenzialeList = credenzialis;
-        notifyDataSetChanged();
-    }
+    private Context context;
 
     public static class CredenzialeViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewNomeViewIdCredenziale;
@@ -37,6 +34,11 @@ public class CredenzialeAdapter extends RecyclerView.Adapter<CredenzialeAdapter.
             textViewDescrizioneViewIdCredenziale = itemView.findViewById(R.id.textview_credenziale_descrizione);
             textViewValoreViewIdCredenziale = itemView.findViewById(R.id.textview_credenziale_valore);
         }
+    }
+
+    public CredenzialeAdapter(ArrayList<Credenziale> credenzialeList, Context context) {
+        this.credenzialeList = credenzialeList;
+        this.context = context;
     }
 
     @NonNull
