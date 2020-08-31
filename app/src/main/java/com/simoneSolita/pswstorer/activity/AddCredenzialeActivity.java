@@ -2,11 +2,13 @@ package com.simonesolita.pswstorer.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+
 import com.simonesolita.pswstorer.R;
 import com.simonesolita.pswstorer.constants.IntentConstants;
 import com.simonesolita.pswstorer.database.PSWStorerDBManager;
@@ -20,6 +22,7 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
     private EditText editTextNome;
     private EditText editTextDescrizione;
     private EditText editTextPassword;
+    private EditText editTextUtenza;
     private String uuid;
 
     @Override
@@ -44,21 +47,21 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
                 onBackPressed();
             }
         });
-
-        ImageButton salva = (ImageButton) findViewById(R.id.save_btn);
-        salva.setVisibility(View.VISIBLE);
-        salva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inserisciCredenziale();
-            }
-        });
     }
 
     private void setContent() {
         editTextNome = (EditText) findViewById(R.id.edittext_nome_sito_add_credenziale);
         editTextDescrizione = (EditText) findViewById(R.id.edittext_descrizione_sito_add_credenziale);
         editTextPassword = (EditText) findViewById(R.id.edittext_password_sito_add_credenziale);
+        editTextUtenza = (EditText) findViewById(R.id.edittext_utenza_sito_add_credenziale);
+
+        Button salva = (Button) findViewById(R.id.button_salva_credenziale);
+        salva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inserisciCredenziale();
+            }
+        });
     }
 
     private void createUUID(){
@@ -69,11 +72,13 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
         String nomeSito = editTextNome.getText().toString();
         String descrizioneSito = editTextDescrizione.getText().toString();
         String passwordSito = editTextPassword.getText().toString();
+        String utenzaSito = editTextUtenza.getText().toString();
         Credenziale credenzialeToAdd = new Credenziale();
         credenzialeToAdd.setUuid(uuid);
         credenzialeToAdd.setNome(nomeSito);
         credenzialeToAdd.setDescrizione(descrizioneSito);
         credenzialeToAdd.setValore(passwordSito);
+        credenzialeToAdd.setUtenza(utenzaSito);
         if(Utility.validaCredenziale(credenzialeToAdd)){
             try {
                 PSWStorerDBManager.getInstance().addCredenziale(credenzialeToAdd);

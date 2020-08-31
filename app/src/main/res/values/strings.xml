@@ -9,4 +9,23 @@
     <string name="credenziali_breadcrumb">Credenziali</string>
     <string name="nessun_requestcode_censito">Errore generico risposta</string>
     <string name="aggiunta_credenziale_ko">Credenziale non aggiunta</string>
+    <string name="credenziale_nome">NOME:</string>
+    <string name="credenziale_descrizione">DESCRIZIONE:</string>
+    <string name="credenziale_utenza">UTENZA:</string>
+    <string name="credenziale_valore">VALORE:</string>
+    <string name="salva_credenziale">Salva</string>
+    <string name="utenza_add_credenziale">UTENZA SITO</string>
+    <string name="inserisci_utenza_sito">Inserisci Utenza Sito</string>
+    <string name="credenziali_list_bottom_navigation">Credenziali</string>
+    <string name="settings_bottom_navigation">Settings</string>
+    <string name="nome_sito_detail_credenziale">NOME SITO</string>
+    <string name="descrizione_sito_detail_credenziale">DESCRIZIONE</string>
+    <string name="utenza_detail_credenziale">UTENZA</string>
+    <string name="password_detail_credenziale">PASSWORD</string>
+    <string name="titolo_conferma_eliminazione_credenziale">ELIMINA CREDENZIALE</string>
+    <string name="annulla_eliminazione">ANNULLA</string>
+    <string name="conferma_eliminazione">CONFERMA</string>
+    <string name="errore_generico_eliminazione">Errore nell\'eliminazione, ritentare !</string>
+    <string name="messaggio_conferma_eliminazione_credenziale_selezionata">Sei sicuro di voler eliminare la credenziale per il sito %s ?</string>
+    <string name="password_copiata">Password copiata negli appunti</string>
 </resources>

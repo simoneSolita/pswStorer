@@ -4,8 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,24 +20,70 @@ import java.util.List;
 public class CredenzialeAdapter extends RecyclerView.Adapter<CredenzialeAdapter.CredenzialeViewHolder> {
 
     private List<Credenziale> credenzialeList = new ArrayList<>();
-    private Context context;
+    private static OnItemClickListener listener;
 
     public static class CredenzialeViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewNomeViewIdCredenziale;
-        public TextView textViewDescrizioneViewIdCredenziale;
-        public TextView textViewValoreViewIdCredenziale;
+        public TextView textViewNome;
+        public TextView textViewDescrizione;
+        public TextView textViewValore;
+        public TextView textViewUtenza;
+        public TextView textViewUUID;
+        public ImageView imageEliminaCredenziale;
 
         public CredenzialeViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewNomeViewIdCredenziale = itemView.findViewById(R.id.textview_credenziale_nome);
-            textViewDescrizioneViewIdCredenziale = itemView.findViewById(R.id.textview_credenziale_descrizione);
-            textViewValoreViewIdCredenziale = itemView.findViewById(R.id.textview_credenziale_valore);
+            textViewNome = itemView.findViewById(R.id.textview_credenziale_nome_valore);
+            textViewUtenza = itemView.findViewById(R.id.textview_credenziale_utenza_valore);
+            textViewDescrizione = itemView.findViewById(R.id.textview_credenziale_descrizione_valore);
+            textViewValore = itemView.findViewById(R.id.textview_credenziale_valore_valore);
+            textViewUUID = itemView.findViewById(R.id.textview_credenziale_id);
+            imageEliminaCredenziale = itemView.findViewById(R.id.button_elimina_credenziale);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.OnItemClick(textViewUUID.getText().toString());
+                        }
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.OnLongItemClick(textViewUUID.getText().toString());
+                        }
+                    }
+                    return true;
+                }
+            });
+
+            imageEliminaCredenziale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.OnItemDelete(textViewUUID.getText().toString());
+                        }
+                    }
+                }
+            });
         }
     }
 
-    public CredenzialeAdapter(ArrayList<Credenziale> credenzialeList, Context context) {
+    public CredenzialeAdapter(ArrayList<Credenziale> credenzialeList) {
         this.credenzialeList = credenzialeList;
-        this.context = context;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -52,9 +97,11 @@ public class CredenzialeAdapter extends RecyclerView.Adapter<CredenzialeAdapter.
     public void onBindViewHolder(@NonNull CredenzialeViewHolder holder, int position) {
         Credenziale credenzialeToShow = credenzialeList.get(position);
 
-        holder.textViewNomeViewIdCredenziale.setText(credenzialeToShow.getNome());
-        holder.textViewDescrizioneViewIdCredenziale.setText(credenzialeToShow.getDescrizione());
-        holder.textViewValoreViewIdCredenziale.setText(credenzialeToShow.getValore());
+        holder.textViewNome.setText(credenzialeToShow.getNome());
+        holder.textViewDescrizione.setText(credenzialeToShow.getDescrizione());
+        holder.textViewUtenza.setText(credenzialeToShow.getUtenza());
+        holder.textViewValore.setText(credenzialeToShow.getValore());
+        holder.textViewUUID.setText(credenzialeToShow.getUuid());
     }
 
     @Override

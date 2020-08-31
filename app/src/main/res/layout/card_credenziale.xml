@@ -9,45 +9,133 @@
     android:layout_marginStart="4dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="4dp"
+    android:layout_marginBottom="4dp"
     app:cardElevation="6dp"
     app:cardMaxElevation="9dp">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_credenziale_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingStart="16sp"
-            android:paddingEnd="16dp"
-            android:textAppearance="@style/text_style_bold_pink"
-            style="@style/text_main_app_name"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textview_credenziale_descrizione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textview_credenziale_nome"
-            android:lineSpacingExtra="1sp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textAppearance="@style/text_style_light_blue_normal" />
+            <RelativeLayout
+                android:id="@+id/relative_intestazione_card_credenziale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textview_credenziale_valore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textview_credenziale_descrizione"
-            android:lineSpacingExtra="1sp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textAppearance="@style/text_style_light_blue_normal"
-            android:layout_marginBottom="16dp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/intestazione_card_credenziale" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_nome_valore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_centerInParent="true"
+                    android:paddingStart="16sp"
+                    android:paddingEnd="16dp"
+                    android:ellipsize="end"
+                    android:textAppearance="@style/text_style_bold_pink" />
+
+                <ImageView
+                    android:id="@+id/button_elimina_credenziale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/textview_credenziale_nome_valore"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/elimina_credenziale_icon" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_body_card_credenziale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_intestazione_card_credenziale">
+
+                <TextView
+                    android:id="@+id/textview_credenziale_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/textview_credenziale_descrizione"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/credenziale_descrizione"
+                    android:textAppearance="@style/text_style_grey" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_descrizione_valore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_credenziale_descrizione"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="1sp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:textAppearance="@style/text_style_light_blue_normal" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_utenza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_credenziale_descrizione_valore"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/credenziale_utenza"
+                    android:textAppearance="@style/text_style_grey" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_utenza_valore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_credenziale_utenza"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="1sp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:textAppearance="@style/text_style_light_blue_normal" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_valore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_credenziale_utenza_valore"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="@string/credenziale_valore"
+                    android:textAppearance="@style/text_style_grey" />
+
+                <TextView
+                    android:id="@+id/textview_credenziale_valore_valore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_credenziale_valore"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="1sp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:textAppearance="@style/text_style_light_blue_normal" />
 
 
-    </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

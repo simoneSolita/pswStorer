@@ -3,8 +3,10 @@ package com.simonesolita.pswstorer.entities;
 public class Credenziale {
 
     private String uuid;
-    private String descrizione;
     private String nome;
+    private String descrizione;
+
+    private String utenza;
     private String valore;
 
     public String getUuid() {
@@ -37,5 +39,13 @@ public class Credenziale {
 
     public void setValore(String valore) {
         this.valore = valore;
+    }
+
+    public String getUtenza() {
+        return utenza;
+    }
+
+    public void setUtenza(String utenza) {
+        this.utenza = utenza;
     }
 }

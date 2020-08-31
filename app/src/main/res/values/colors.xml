@@ -10,4 +10,12 @@
     <color name="black">#0E141A</color>
     <color name="backGround">#E5E5E5</color>
     <color name="delimitator_add_credenziale">#E0E0E0</color>
+    <color name="button_aggiungi_credenziale">#387CFA</color>
+    <color name="button_conferma_eliminazione">#387CFA</color>
+    <color name="button_annulla_eliminazione">#FFFFFF</color>
+    <color name="itemUnselectedTintBottomNavigation">#828282</color>
+    <color name="textItemUnselectedTintBottomNavigation">#828282</color>
+    <color name="itemSelectedTintBottomNavigation">#387CFA</color>
+    <color name="textItemSelectedTintBottomNavigation">#387CFA</color>
+    <color name="delimitator_detail_credenziale">#E0E0E0</color>
 </resources>

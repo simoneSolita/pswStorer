@@ -1,76 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/main_toolbar"/>
+    <include layout="@layout/main_toolbar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nome_sito_add_credenziale"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
-
-    <EditText
-        android:id="@+id/edittext_nome_sito_add_credenziale"
-        style="@style/edittext_no_underline"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="@string/inserisci_nome_sito" />
+        android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/delimitator_add_credenziale" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descrizione_sito_add_credenziale"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
-    <EditText
-        android:id="@+id/edittext_descrizione_sito_add_credenziale"
-        style="@style/edittext_no_underline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="@string/inserisci_descrizione_sito" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/nome_sito_add_credenziale"
+                android:textSize="17sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/delimitator_add_credenziale" />
+            <EditText
+                android:id="@+id/edittext_nome_sito_add_credenziale"
+                style="@style/edittext_no_underline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="6dp"
+                android:hint="@string/inserisci_nome_sito" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password_add_credenziale"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/delimitator_add_credenziale" />
 
-    <EditText
-        android:id="@+id/edittext_password_sito_add_credenziale"
-        style="@style/edittext_no_underline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="@string/inserisci_password_sito" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/descrizione_sito_add_credenziale"
+                android:textSize="17sp" />
 
+            <EditText
+                android:id="@+id/edittext_descrizione_sito_add_credenziale"
+                style="@style/edittext_no_underline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="6dp"
+                android:hint="@string/inserisci_descrizione_sito" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/delimitator_add_credenziale" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/utenza_add_credenziale"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edittext_utenza_sito_add_credenziale"
+                style="@style/edittext_no_underline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="6dp"
+                android:hint="@string/inserisci_utenza_sito" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/delimitator_add_credenziale" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/password_add_credenziale"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/edittext_password_sito_add_credenziale"
+                style="@style/edittext_no_underline"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="6dp"
+                android:hint="@string/inserisci_password_sito" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_salva_credenziale"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/salva_credenziale"
+                android:textSize="16sp"
+                app:backgroundTint="@color/button_aggiungi_credenziale"
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

@@ -55,6 +55,7 @@ public class DbUtils {
     private static final String SQL_CREATE_CREDENZIALE = " CREATE TABLE IF NOT EXISTS " + DbConstants.CREDENZIALE_TABLE + " (" +
             DbConstants.CREDENZIALE_TABLE_UUID          + " TEXT," +
             DbConstants.CREDENZIALE_TABLE_NOME          + " TEXT," +
+            DbConstants.CREDENZIALE_TABLE_UTENZA          + " TEXT," +
             DbConstants.CREDENZIALE_TABLE_VALORE        + " TEXT," +
             DbConstants.CREDENZIALE_TABLE_DESCRIZIONE   + " TEXT" +
             " );";

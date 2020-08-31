@@ -1,64 +1,79 @@
 package com.simonesolita.pswstorer.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.simonesolita.pswstorer.PswStorerApplication;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.simonesolita.pswstorer.R;
-import com.simonesolita.pswstorer.adapter.CredenzialeAdapter;
-import com.simonesolita.pswstorer.constants.IntentConstants;
-import com.simonesolita.pswstorer.database.PSWStorerDBManager;
+import com.simonesolita.pswstorer.fragments.ListCredenzialeFragment;
+import com.simonesolita.pswstorer.fragments.SettingsFragment;
+import com.simonesolita.pswstorer.interfaces.OnDeleteListener;
 
 public class CredenzialiListActivity extends PswStorerbaseActivity {
-    private RecyclerView recyclerView;
+    private FrameLayout frameLayout;
+    private BottomNavigationView bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credenziali_list);
         setContent();
+        setListeners();
     }
 
     private void setContent() {
-        FloatingActionButton floatingButton = findViewById(R.id.add_credenziale_button);
-        floatingButton.setOnClickListener(new View.OnClickListener() {
+        bottomView = findViewById(R.id.bottom_navigation);
+        frameLayout = findViewById(R.id.container_fragment);
+
+        loadFragment(initializeListCredenzialeFragment());
+    }
+
+    private void setListeners() {
+        bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CredenzialiListActivity.this, AddCredenzialeActivity.class);
-                startActivityForResult(intent, IntentConstants.CREDENZIALI_LIST_REQUEST_CODE_ADD);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_bottom_navigation_list_credenziali:
+                        loadFragment(initializeListCredenzialeFragment());
+                        return true;
+                    case R.id.menu_bottom_navigation_settings:
+                        loadFragment(SettingsFragment.getInstance());
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container_fragment, fragment);
+        ft.commit();
+    }
+
+    private Fragment initializeListCredenzialeFragment(){
+        ListCredenzialeFragment listCredenzialeFragment = ListCredenzialeFragment.getInstance();
+        listCredenzialeFragment.setOnDeleteListener(new OnDeleteListener(){
+            @Override
+            public void OnItemDelete(boolean esito) {
+                if (esito){
+                    setContent();
+                }
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView_list_credenziali);
-        calculateAdapter();
-    }
-
-    private void calculateAdapter() {
-        CredenzialeAdapter adapter = new CredenzialeAdapter(PSWStorerDBManager.getInstance().getCredenzialeByCursor(PSWStorerDBManager.getInstance().getAllCredenzialis()), PswStorerApplication.getCurrentActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        return listCredenzialeFragment;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case IntentConstants.CREDENZIALI_LIST_REQUEST_CODE_ADD:
-                if (resultCode == IntentConstants.CREDENZIALI_LIST_RESULT_CODE_ADD_OK) {
-                    calculateAdapter();
-                } else if (resultCode == IntentConstants.CREDENZIALI_LIST_RESULT_CODE_ADD_KO) {
-                    Toast.makeText(PswStorerApplication.getCurrentActivity(), PswStorerApplication.getCurrentActivity().getString(R.string.aggiunta_credenziale_ko), Toast.LENGTH_LONG).show();
-                }
-                break;
-            default:
-                Toast.makeText(PswStorerApplication.getCurrentActivity(), PswStorerApplication.getCurrentActivity().getString(R.string.nessun_requestcode_censito), Toast.LENGTH_LONG).show();
-                break;
-        }
+    protected void onResume() {
+        super.onResume();
+        setContent();
     }
 }

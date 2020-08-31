@@ -44,6 +44,7 @@ public class PSWStorerDBManager extends DBManager {
             ContentValues values = new ContentValues();
             values.put(DbConstants.CREDENZIALE_TABLE_UUID, credenziale.getUuid());
             values.put(DbConstants.CREDENZIALE_TABLE_NOME, credenziale.getNome());
+            values.put(DbConstants.CREDENZIALE_TABLE_UTENZA, credenziale.getUtenza());
             values.put(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE, credenziale.getDescrizione());
             values.put(DbConstants.CREDENZIALE_TABLE_VALORE, credenziale.getValore());
             database.insert(DbConstants.CREDENZIALE_TABLE, null, values);
@@ -62,6 +63,7 @@ public class PSWStorerDBManager extends DBManager {
             ContentValues values = new ContentValues();
             values.put(DbConstants.CREDENZIALE_TABLE_UUID, credenziale.getUuid());
             values.put(DbConstants.CREDENZIALE_TABLE_NOME, credenziale.getNome());
+            values.put(DbConstants.CREDENZIALE_TABLE_UTENZA, credenziale.getUtenza());
             values.put(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE, credenziale.getDescrizione());
             values.put(DbConstants.CREDENZIALE_TABLE_VALORE, credenziale.getValore());
             database.update(DbConstants.CREDENZIALE_TABLE, values, DbConstants.CREDENZIALE_TABLE_UUID + "=?", new String[]{credenziale.getUuid()});
@@ -94,6 +96,7 @@ public class PSWStorerDBManager extends DBManager {
                 encargo.setUuid(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_UUID)));
                 encargo.setNome(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_NOME)));
                 encargo.setDescrizione(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE)));
+                encargo.setUtenza(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_UTENZA)));
                 encargo.setValore(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_VALORE)));
                 listCredenzialis.add(encargo);
             }
