@@ -2,7 +2,6 @@ package com.simonesolita.pswstorer.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 
 public class DetailCredenzialeActivity extends PswStorerbaseActivity {
 
-    private Credenziale credenzialeToShow;
     private String uuid;
     private TextView textViewNomeSito;
     private TextView textViewDescrizione;
@@ -28,7 +26,8 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_credenziale);
-        if (getIntent().hasExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID) && !TextUtils.isEmpty(getIntent().getStringExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID))){
+        if (getIntent().hasExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID) &&
+                !TextUtils.isEmpty(getIntent().getStringExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID))) {
             uuid = getIntent().getStringExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID);
             setContent();
         }
@@ -41,19 +40,14 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
         TextView textToolbar = (TextView) findViewById(R.id.textViewBreadcrumb);
         textToolbar.setText(getString(R.string.credenziali_breadcrumb));
         ImageButton frecciaBack = (ImageButton) findViewById(R.id.back_toolbar);
-        frecciaBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        frecciaBack.setOnClickListener(view -> onBackPressed());
     }
 
     private void setContent() {
-        if (!TextUtils.isEmpty(uuid)){
+        if (!TextUtils.isEmpty(uuid)) {
             ArrayList<Credenziale> credenzialiToCheck = PSWStorerDBManager.getInstance().getCredenzialeByCursor(PSWStorerDBManager.getInstance().getCredenzialeByUUID(uuid));
-            if (!credenzialiToCheck.isEmpty()){
-                credenzialeToShow = credenzialiToCheck.get(0);
+            if (!credenzialiToCheck.isEmpty()) {
+                Credenziale credenzialeToShow = credenzialiToCheck.get(0);
                 bindTextViews();
 
                 textViewNomeSito.setText(credenzialeToShow.getNome());
@@ -64,7 +58,7 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
         }
     }
 
-    private void bindTextViews(){
+    private void bindTextViews() {
         textViewNomeSito = findViewById(R.id.credenziale_detail_nome);
         textViewDescrizione = findViewById(R.id.credenziale_detail_descrizione);
         textViewUtenza = findViewById(R.id.credenziale_detail_nome_utenza);

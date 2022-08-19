@@ -28,4 +28,27 @@
     <string name="errore_generico_eliminazione">Errore nell\'eliminazione, ritentare !</string>
     <string name="messaggio_conferma_eliminazione_credenziale_selezionata">Sei sicuro di voler eliminare la credenziale per il sito %s ?</string>
     <string name="password_copiata">Password copiata negli appunti</string>
+    <string name="utenza_copiata">Utente copiato negli appunti</string>
+
+    <string name="autenticazione_fallita">Autenticazione Fallita!</string>
+    <string name="biometric_auth_title">Autenticazione Biometrica</string>
+    <string name="biometric_auth_subtitle">Autenticati usando uno dei metodi consigliati</string>
+    <string name="biometric_auth_use_code">Autenticati usando codice</string>
+    <string name="lock">LOCK</string>
+    <string name="create_code">Crea un codice di 4 cifre per salvare le tue password</string>
+    <string name="create_code_warning">Attenzione!\nPer la tua sicurezza questo codice sarà crittografato e non sarà recuperabile dal sistema, nemmeno in caso di smarrimento.\nSii certo di non dimenticarlo!</string>
+    <string name="create_code_code1">Codice…</string>
+    <string name="create_code_code2">Ripeti Codice…</string>
+    <string name="create_code_conferma">Conferma</string>
+
+
+<!--    errors-->
+    <string name="error_create_code_not_match">Il codice è diverso</string>
+    <string name="error_create_code_not_4_digit">Il codice non è di 4 cifre</string>
+    <string name="error_verify_code_not_4_digit">Il codice non è di 4 cifre</string>
+    <string name="error_verify_code_not_correct">Il codice non è corretto</string>
+    <string name="content_description_digit">digit</string>
+    <string name="error_verify_code_generic_error">Errore generico</string>
+
+
 </resources>

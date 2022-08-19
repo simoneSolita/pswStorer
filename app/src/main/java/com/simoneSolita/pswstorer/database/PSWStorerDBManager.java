@@ -3,7 +3,6 @@ package com.simonesolita.pswstorer.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.simonesolita.pswstorer.PswStorerApplication;
@@ -57,11 +56,10 @@ public class PSWStorerDBManager extends DBManager {
         }
     }
 
-    public void updateCredenziale(Credenziale credenziale) {
+    public void updateCredenziale(Credenziale credenziale, String uuid) {
         database.beginTransaction();
         try {
             ContentValues values = new ContentValues();
-            values.put(DbConstants.CREDENZIALE_TABLE_UUID, credenziale.getUuid());
             values.put(DbConstants.CREDENZIALE_TABLE_NOME, credenziale.getNome());
             values.put(DbConstants.CREDENZIALE_TABLE_UTENZA, credenziale.getUtenza());
             values.put(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE, credenziale.getDescrizione());
@@ -94,7 +92,7 @@ public class PSWStorerDBManager extends DBManager {
             while (credenzialeCursor.moveToNext()) {
                 Credenziale encargo = new Credenziale();
                 encargo.setUuid(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_UUID)));
-                encargo.setNome(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_NOME)));
+                encargo.setNome(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_NOME)).toUpperCase());
                 encargo.setDescrizione(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE)));
                 encargo.setUtenza(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_UTENZA)));
                 encargo.setValore(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_VALORE)));

@@ -22,6 +22,7 @@ import com.simonesolita.pswstorer.PswStorerApplication;
 import com.simonesolita.pswstorer.R;
 import com.simonesolita.pswstorer.activity.AddCredenzialeActivity;
 import com.simonesolita.pswstorer.activity.DetailCredenzialeActivity;
+import com.simonesolita.pswstorer.activity.EditCredenzialeActivity;
 import com.simonesolita.pswstorer.adapter.CredenzialeAdapter;
 import com.simonesolita.pswstorer.constants.IntentConstants;
 import com.simonesolita.pswstorer.database.PSWStorerDBManager;
@@ -66,12 +67,9 @@ public class ListCredenzialeFragment extends Fragment {
         mLayout = new LinearLayoutManager(PswStorerApplication.getCurrentActivity());
 
         FloatingActionButton floatingButton = v.findViewById(R.id.add_credenziale_button);
-        floatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PswStorerApplication.getCurrentActivity(), AddCredenzialeActivity.class);
-                getActivity().startActivityForResult(intent, IntentConstants.CREDENZIALI_LIST_REQUEST_CODE_ADD);
-            }
+        floatingButton.setOnClickListener(view -> {
+            Intent intent = new Intent(PswStorerApplication.getCurrentActivity(), AddCredenzialeActivity.class);
+            getActivity().startActivityForResult(intent, IntentConstants.CREDENZIALI_LIST_REQUEST_CODE_ADD);
         });
 
         createAdapter();
@@ -103,33 +101,38 @@ public class ListCredenzialeFragment extends Fragment {
                                 .setTitle(PswStorerApplication.getCurrentActivity().getString(R.string.titolo_conferma_eliminazione_credenziale))
                                 .setMessage(String.format(PswStorerApplication.getCurrentActivity().getString(R.string.messaggio_conferma_eliminazione_credenziale_selezionata), credenzialeToDelete.getNome()))
                                 .setPositiveButton(PswStorerApplication.getCurrentActivity().getString(R.string.conferma_eliminazione),
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int whichButton) {
-                                                try {
-                                                    PSWStorerDBManager.getInstance().deleteCredenziale(uuidSelezionato);
-                                                    if (listener != null) {
-                                                        listener.OnItemDelete(true);
-                                                    }
-                                                } catch (Exception e) {
-                                                    if (listener != null) {
-                                                        listener.OnItemDelete(false);
-                                                    }
+                                        (dialog, whichButton) -> {
+                                            try {
+                                                PSWStorerDBManager.getInstance().deleteCredenziale(uuidSelezionato);
+                                                if (listener != null) {
+                                                    listener.OnItemDelete(true);
                                                 }
-                                                dialog.dismiss();
-                                            }
-                                        })
-                                .setNegativeButton(PswStorerApplication.getCurrentActivity().getString(R.string.annulla_eliminazione),
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int whichButton) {
+                                            } catch (Exception e) {
                                                 if (listener != null) {
                                                     listener.OnItemDelete(false);
                                                 }
-                                                dialog.dismiss();
                                             }
+                                            dialog.dismiss();
+                                        })
+                                .setNegativeButton(PswStorerApplication.getCurrentActivity().getString(R.string.annulla_eliminazione),
+                                        (dialog, whichButton) -> {
+                                            if (listener != null) {
+                                                listener.OnItemDelete(false);
+                                            }
+                                            dialog.dismiss();
                                         })
                                 .setCancelable(true)
                                 .show();
                     }
+                }
+            }
+
+            @Override
+            public void OnItemEdit(String id) {
+                if (!TextUtils.isEmpty(id)) {
+                    Intent intentToEdit = new Intent(PswStorerApplication.getCurrentActivity(), EditCredenzialeActivity.class);
+                    intentToEdit.putExtra(IntentConstants.CREDENZIALI_LIST_DETAIL_UUID, id);
+                    startActivity(intentToEdit);
                 }
             }
 
@@ -143,6 +146,32 @@ public class ListCredenzialeFragment extends Fragment {
                     clipboard.setPrimaryClip(clip);
 
                     Toast.makeText(PswStorerApplication.getCurrentActivity(),PswStorerApplication.getCurrentActivity().getString(R.string.password_copiata),Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void OnCopyPassword(String id) {
+                ArrayList<Credenziale> credenzialiToCheck = PSWStorerDBManager.getInstance().getCredenzialeByCursor(PSWStorerDBManager.getInstance().getCredenzialeByUUID(id));
+                if (!credenzialiToCheck.isEmpty()) {
+                    Credenziale credenzialeToCopy = credenzialiToCheck.get(0);
+                    ClipboardManager clipboard = (ClipboardManager) PswStorerApplication.getCurrentActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("psw", credenzialeToCopy.getValore());
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast.makeText(PswStorerApplication.getCurrentActivity(),PswStorerApplication.getCurrentActivity().getString(R.string.password_copiata),Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void OnCopyUtenza(String id) {
+                ArrayList<Credenziale> credenzialiToCheck = PSWStorerDBManager.getInstance().getCredenzialeByCursor(PSWStorerDBManager.getInstance().getCredenzialeByUUID(id));
+                if (!credenzialiToCheck.isEmpty()) {
+                    Credenziale credenzialeToCopy = credenzialiToCheck.get(0);
+                    ClipboardManager clipboard = (ClipboardManager) PswStorerApplication.getCurrentActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("user", credenzialeToCopy.getUtenza());
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast.makeText(PswStorerApplication.getCurrentActivity(),PswStorerApplication.getCurrentActivity().getString(R.string.utenza_copiata),Toast.LENGTH_LONG).show();
                 }
             }
         });

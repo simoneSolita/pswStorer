@@ -3,7 +3,6 @@ package com.simonesolita.pswstorer.utility;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import android.widget.TextView;
 
 import com.simonesolita.pswstorer.constants.MainConstants;
 import com.simonesolita.pswstorer.entities.Credenziale;
@@ -26,7 +25,7 @@ public class Utility {
     }
 
     private static ArrayList<String> findUnAskedPermissions(String[] wanted, Activity activity) {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
 
         for (String perm : wanted) {
             if (!hasPermission(perm, activity) /*&& shouldWeAsk(perm)*/) {
@@ -43,10 +42,7 @@ public class Utility {
     }
 
     public static boolean validaCredenziale(Credenziale credenzialeToValidate) {
-        if (TextUtils.isEmpty(credenzialeToValidate.getNome()) ||
-                TextUtils.isEmpty(credenzialeToValidate.getValore())) {
-            return false;
-        }
-        return true;
+        return !TextUtils.isEmpty(credenzialeToValidate.getNome()) &&
+                !TextUtils.isEmpty(credenzialeToValidate.getValore());
     }
 }

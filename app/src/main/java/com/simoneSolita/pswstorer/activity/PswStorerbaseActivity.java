@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,25 +26,23 @@ public class PswStorerbaseActivity extends AppCompatActivity {
 
 
     @Override
-    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
-        switch (permsRequestCode) {
-            case 200:
-                Boolean[] permissonGranted = new Boolean[permissions.length];
-                boolean allPermissionsGranted = true;
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults);
+        if (permsRequestCode == 200) {
+            Boolean[] permissonGranted = new Boolean[permissions.length];
+            boolean allPermissionsGranted = true;
 
-                for (int i = 0; i < permissions.length; i++) {
-                    permissonGranted[i] = grantResults[i] == PackageManager.PERMISSION_GRANTED;
+            for (int i = 0; i < permissions.length; i++) {
+                permissonGranted[i] = grantResults[i] == PackageManager.PERMISSION_GRANTED;
 
-                    if (!permissonGranted[i]) {
-                        allPermissionsGranted = false;
-                    }
+                if (!permissonGranted[i]) {
+                    allPermissionsGranted = false;
                 }
+            }
 
-                if (!allPermissionsGranted) {
-                    Utility.askRuntimePermission(PswStorerApplication.getCurrentActivity());
-                }
-
-                break;
+            if (!allPermissionsGranted) {
+                Utility.askRuntimePermission(PswStorerApplication.getCurrentActivity());
+            }
         }
     }
 }

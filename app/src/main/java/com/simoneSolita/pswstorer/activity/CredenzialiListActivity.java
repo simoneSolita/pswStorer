@@ -1,10 +1,8 @@
 package com.simonesolita.pswstorer.activity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,7 +13,6 @@ import com.simonesolita.pswstorer.fragments.SettingsFragment;
 import com.simonesolita.pswstorer.interfaces.OnDeleteListener;
 
 public class CredenzialiListActivity extends PswStorerbaseActivity {
-    private FrameLayout frameLayout;
     private BottomNavigationView bottomView;
 
     @Override
@@ -28,25 +25,22 @@ public class CredenzialiListActivity extends PswStorerbaseActivity {
 
     private void setContent() {
         bottomView = findViewById(R.id.bottom_navigation);
-        frameLayout = findViewById(R.id.container_fragment);
+        FrameLayout frameLayout = findViewById(R.id.container_fragment);
 
         loadFragment(initializeListCredenzialeFragment());
     }
 
     private void setListeners() {
-        bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_bottom_navigation_list_credenziali:
-                        loadFragment(initializeListCredenzialeFragment());
-                        return true;
-                    case R.id.menu_bottom_navigation_settings:
-                        loadFragment(SettingsFragment.getInstance());
-                        return true;
-                    default:
-                        return false;
-                }
+        bottomView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_bottom_navigation_list_credenziali:
+                    loadFragment(initializeListCredenzialeFragment());
+                    return true;
+                case R.id.menu_bottom_navigation_settings:
+                    loadFragment(SettingsFragment.getInstance());
+                    return true;
+                default:
+                    return false;
             }
         });
     }

@@ -1,7 +1,10 @@
 package com.simonesolita.pswstorer.interfaces;
 
 public interface OnItemClickListener {
-    public void OnItemClick(String id);
-    public void OnItemDelete(String id);
-    public void OnLongItemClick(String id);
+    void OnItemClick(String id);
+    void OnItemDelete(String id);
+    void OnItemEdit(String id);
+    void OnLongItemClick(String id);
+    void OnCopyPassword(String id);
+    void OnCopyUtenza(String id);
 }

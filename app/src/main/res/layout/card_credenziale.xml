@@ -36,22 +36,29 @@
                     android:id="@+id/textview_credenziale_nome_valore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="end"
                     android:paddingStart="16sp"
                     android:paddingEnd="16dp"
-                    android:ellipsize="end"
                     android:textAppearance="@style/text_style_bold_pink" />
 
                 <ImageView
                     android:id="@+id/button_elimina_credenziale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/textview_credenziale_nome_valore"
-                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/elimina_credenziale_icon" />
+                    android:src="@drawable/ic_delete_credenziale" />
+
+                <ImageView
+                    android:id="@+id/button_modify_credenziale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/edit_credenziale_icon" />
 
             </RelativeLayout>
 
@@ -65,7 +72,7 @@
                     android:id="@+id/textview_credenziale_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textview_credenziale_descrizione"
@@ -99,40 +106,87 @@
                     android:text="@string/credenziale_utenza"
                     android:textAppearance="@style/text_style_grey" />
 
-                <TextView
-                    android:id="@+id/textview_credenziale_utenza_valore"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_utenza"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textview_credenziale_utenza"
-                    android:layout_marginTop="4dp"
-                    android:lineSpacingExtra="1sp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:textAppearance="@style/text_style_light_blue_normal" />
+                    android:layout_below="@+id/textview_credenziale_utenza">
+
+                    <TextView
+                        android:id="@+id/textview_credenziale_utenza_valore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="1sp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:textAppearance="@style/text_style_light_blue_normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/button_copy_utenza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/copy_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/textview_credenziale_valore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textview_credenziale_utenza_valore"
+                    android:layout_below="@+id/constraint_utenza"
                     android:layout_marginTop="8dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:text="@string/credenziale_valore"
                     android:textAppearance="@style/text_style_grey" />
 
-                <TextView
-                    android:id="@+id/textview_credenziale_valore_valore"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textview_credenziale_valore"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="16dp"
-                    android:lineSpacingExtra="1sp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:textAppearance="@style/text_style_light_blue_normal" />
+                    android:layout_marginBottom="10dp">
 
+                    <TextView
+                        android:id="@+id/textview_credenziale_valore_valore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="1sp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:textAppearance="@style/text_style_light_blue_normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/button_show_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/selector_toggle_password"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/button_copy_password"
+                        app:layout_constraintHorizontal_bias="0.945"
+                        app:layout_constraintStart_toEndOf="@+id/textview_credenziale_valore_valore"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/button_copy_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/copy_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </RelativeLayout>
         </RelativeLayout>

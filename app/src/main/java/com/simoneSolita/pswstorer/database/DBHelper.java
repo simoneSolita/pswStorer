@@ -98,21 +98,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return database.exists();
     }
 
-    /**
-     * Copies your database from your local assets-folder to the just created empty database in the
-     * system folder, from where it can be accessed and handled.
-     * This is done by transfering bytestream.
-     */
-    private void copyDataBase() {
-
-        try {
-            DbUtils.copyDataBase(DB_NAME, myContext);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     SQLiteDatabase openDataBase() throws SQLException {
         String myPath = myContext.getDatabasePath(DB_NAME).getPath();

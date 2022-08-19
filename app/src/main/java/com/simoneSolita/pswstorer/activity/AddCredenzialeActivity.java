@@ -1,7 +1,6 @@
 package com.simonesolita.pswstorer.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,40 +35,30 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
     }
 
     private void setActionbar() {
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar myToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(myToolbar);
-        TextView textToolbar = (TextView) findViewById(R.id.textViewBreadcrumb);
+        TextView textToolbar = findViewById(R.id.textViewBreadcrumb);
         textToolbar.setText(getString(R.string.credenziali_breadcrumb));
-        ImageButton frecciaBack = (ImageButton) findViewById(R.id.back_toolbar);
-        frecciaBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        ImageButton frecciaBack = findViewById(R.id.back_toolbar);
+        frecciaBack.setOnClickListener(view -> onBackPressed());
     }
 
     private void setContent() {
-        editTextNome = (EditText) findViewById(R.id.edittext_nome_sito_add_credenziale);
-        editTextDescrizione = (EditText) findViewById(R.id.edittext_descrizione_sito_add_credenziale);
-        editTextPassword = (EditText) findViewById(R.id.edittext_password_sito_add_credenziale);
-        editTextUtenza = (EditText) findViewById(R.id.edittext_utenza_sito_add_credenziale);
+        editTextNome = findViewById(R.id.edittext_nome_sito_add_credenziale);
+        editTextDescrizione = findViewById(R.id.edittext_descrizione_sito_add_credenziale);
+        editTextPassword = findViewById(R.id.edittext_password_sito_add_credenziale);
+        editTextUtenza = findViewById(R.id.edittext_utenza_sito_add_credenziale);
 
-        Button salva = (Button) findViewById(R.id.button_salva_credenziale);
-        salva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inserisciCredenziale();
-            }
-        });
+        Button salva = findViewById(R.id.button_salva_credenziale);
+        salva.setOnClickListener(view -> inserisciCredenziale());
     }
 
-    private void createUUID(){
+    private void createUUID() {
         uuid = UUID.randomUUID().toString();
     }
 
-    private void inserisciCredenziale(){
-        String nomeSito = editTextNome.getText().toString();
+    private void inserisciCredenziale() {
+        String nomeSito = editTextNome.getText().toString().toUpperCase();
         String descrizioneSito = editTextDescrizione.getText().toString();
         String passwordSito = editTextPassword.getText().toString();
         String utenzaSito = editTextUtenza.getText().toString();
@@ -79,11 +68,11 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
         credenzialeToAdd.setDescrizione(descrizioneSito);
         credenzialeToAdd.setValore(passwordSito);
         credenzialeToAdd.setUtenza(utenzaSito);
-        if(Utility.validaCredenziale(credenzialeToAdd)){
+        if (Utility.validaCredenziale(credenzialeToAdd)) {
             try {
                 PSWStorerDBManager.getInstance().addCredenziale(credenzialeToAdd);
                 setResult(IntentConstants.CREDENZIALI_LIST_RESULT_CODE_ADD_OK);
-            }catch (Exception e){
+            } catch (Exception e) {
                 setResult(IntentConstants.CREDENZIALI_LIST_RESULT_CODE_ADD_KO);
             }
             finish();
