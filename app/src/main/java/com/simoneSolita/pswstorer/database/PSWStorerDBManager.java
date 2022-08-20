@@ -46,6 +46,7 @@ public class PSWStorerDBManager extends DBManager {
             values.put(DbConstants.CREDENZIALE_TABLE_UTENZA, credenziale.getUtenza());
             values.put(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE, credenziale.getDescrizione());
             values.put(DbConstants.CREDENZIALE_TABLE_VALORE, credenziale.getValore());
+            values.put(DbConstants.CREDENZIALE_TABLE_ALTRE_INFO, credenziale.getAltreInfo());
             database.insert(DbConstants.CREDENZIALE_TABLE, null, values);
             Log.i("Credenziale inserita ", "Credenziale con Nome: " + credenziale.getNome());
             database.setTransactionSuccessful();
@@ -64,6 +65,7 @@ public class PSWStorerDBManager extends DBManager {
             values.put(DbConstants.CREDENZIALE_TABLE_UTENZA, credenziale.getUtenza());
             values.put(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE, credenziale.getDescrizione());
             values.put(DbConstants.CREDENZIALE_TABLE_VALORE, credenziale.getValore());
+            values.put(DbConstants.CREDENZIALE_TABLE_ALTRE_INFO, credenziale.getAltreInfo());
             database.update(DbConstants.CREDENZIALE_TABLE, values, DbConstants.CREDENZIALE_TABLE_UUID + "=?", new String[]{credenziale.getUuid()});
             Log.i("Credenziale modificata ", "Credenziale con nome : " + credenziale.getNome());
             database.setTransactionSuccessful();
@@ -96,6 +98,7 @@ public class PSWStorerDBManager extends DBManager {
                 encargo.setDescrizione(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_DESCRIZIONE)));
                 encargo.setUtenza(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_UTENZA)));
                 encargo.setValore(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_VALORE)));
+                encargo.setAltreInfo(credenzialeCursor.getString(credenzialeCursor.getColumnIndex(DbConstants.CREDENZIALE_TABLE_ALTRE_INFO)));
                 listCredenzialis.add(encargo);
             }
             credenzialeCursor.close();

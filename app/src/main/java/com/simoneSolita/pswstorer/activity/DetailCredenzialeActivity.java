@@ -21,6 +21,7 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
     private TextView textViewDescrizione;
     private TextView textViewUtenza;
     private TextView textViewPassword;
+    private TextView textViewAltreInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
                 textViewDescrizione.setText(credenzialeToShow.getDescrizione());
                 textViewUtenza.setText(credenzialeToShow.getUtenza());
                 textViewPassword.setText(credenzialeToShow.getValore());
+                textViewAltreInfo.setText(credenzialeToShow.getAltreInfo());
             }
         }
     }
@@ -63,6 +65,7 @@ public class DetailCredenzialeActivity extends PswStorerbaseActivity {
         textViewDescrizione = findViewById(R.id.credenziale_detail_descrizione);
         textViewUtenza = findViewById(R.id.credenziale_detail_nome_utenza);
         textViewPassword = findViewById(R.id.credenziale_detail_password);
+        textViewAltreInfo = findViewById(R.id.credenziale_detail_altre_info);
     }
 
     @Override

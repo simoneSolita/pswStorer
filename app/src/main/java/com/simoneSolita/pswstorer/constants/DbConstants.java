@@ -9,4 +9,5 @@ public class DbConstants {
     public static final String CREDENZIALE_TABLE_NOME = "nome";
     public static final String CREDENZIALE_TABLE_UTENZA = "utenza";
     public static final String CREDENZIALE_TABLE_VALORE = "valore";
+    public static final String CREDENZIALE_TABLE_ALTRE_INFO = "altre_info";
 }

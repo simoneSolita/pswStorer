@@ -8,6 +8,7 @@ public class Credenziale {
 
     private String utenza;
     private String valore;
+    private String altreInfo;
 
     public String getUuid() {
         return uuid;
@@ -47,5 +48,13 @@ public class Credenziale {
 
     public void setUtenza(String utenza) {
         this.utenza = utenza;
+    }
+
+    public String getAltreInfo() {
+        return altreInfo;
+    }
+
+    public void setAltreInfo(String altreInfo) {
+        this.altreInfo = altreInfo;
     }
 }

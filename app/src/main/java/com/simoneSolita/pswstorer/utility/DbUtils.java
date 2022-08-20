@@ -24,6 +24,7 @@ public class DbUtils {
             DbConstants.CREDENZIALE_TABLE_NOME          + " TEXT," +
             DbConstants.CREDENZIALE_TABLE_UTENZA          + " TEXT," +
             DbConstants.CREDENZIALE_TABLE_VALORE        + " TEXT," +
-            DbConstants.CREDENZIALE_TABLE_DESCRIZIONE   + " TEXT" +
+            DbConstants.CREDENZIALE_TABLE_DESCRIZIONE   + " TEXT," +
+            DbConstants.CREDENZIALE_TABLE_ALTRE_INFO   + " TEXT" +
             " );";
 }

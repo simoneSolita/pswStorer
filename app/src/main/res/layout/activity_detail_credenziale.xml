@@ -108,6 +108,31 @@
                     style="@style/detailValue" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/delimitator_detail_credenziale" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    style="@style/detailTitle"
+                    android:text="@string/altre_info_detail_credenziale" />
+
+                <TextView
+                    android:id="@+id/credenziale_detail_altre_info"
+                    style="@style/detailValue" />
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

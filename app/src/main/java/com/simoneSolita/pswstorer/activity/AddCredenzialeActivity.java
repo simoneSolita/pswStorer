@@ -22,6 +22,7 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
     private EditText editTextDescrizione;
     private EditText editTextPassword;
     private EditText editTextUtenza;
+    private EditText editTextAltreInfo;
     private String uuid;
 
     @Override
@@ -48,6 +49,7 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
         editTextDescrizione = findViewById(R.id.edittext_descrizione_sito_add_credenziale);
         editTextPassword = findViewById(R.id.edittext_password_sito_add_credenziale);
         editTextUtenza = findViewById(R.id.edittext_utenza_sito_add_credenziale);
+        editTextAltreInfo = findViewById(R.id.edittext_altre_info_sito_add_credenziale);
 
         Button salva = findViewById(R.id.button_salva_credenziale);
         salva.setOnClickListener(view -> inserisciCredenziale());
@@ -62,12 +64,14 @@ public class AddCredenzialeActivity extends PswStorerbaseActivity {
         String descrizioneSito = editTextDescrizione.getText().toString();
         String passwordSito = editTextPassword.getText().toString();
         String utenzaSito = editTextUtenza.getText().toString();
+        String altreinfo = editTextAltreInfo.getText().toString();
         Credenziale credenzialeToAdd = new Credenziale();
         credenzialeToAdd.setUuid(uuid);
         credenzialeToAdd.setNome(nomeSito);
         credenzialeToAdd.setDescrizione(descrizioneSito);
         credenzialeToAdd.setValore(passwordSito);
         credenzialeToAdd.setUtenza(utenzaSito);
+        credenzialeToAdd.setAltreInfo(altreinfo);
         if (Utility.validaCredenziale(credenzialeToAdd)) {
             try {
                 PSWStorerDBManager.getInstance().addCredenziale(credenzialeToAdd);

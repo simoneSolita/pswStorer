@@ -49,6 +49,9 @@
     <string name="error_verify_code_not_correct">Il codice non è corretto</string>
     <string name="content_description_digit">digit</string>
     <string name="error_verify_code_generic_error">Errore generico</string>
+    <string name="inserisci_altre_info_sito">Inserisci Altre info</string>
+    <string name="altre_info_add_credenziale">ALTRE INFO:</string>
+    <string name="altre_info_detail_credenziale">ALTRE INFO:</string>
 
 
 </resources>

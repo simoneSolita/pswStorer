@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
 
-    private static final int CURRENT_DB_VERSION = 1;
+    private static final int CURRENT_DB_VERSION = 2;
 
     private static final String DB_NAME = "pswstorer.db";
     private final Context myContext;
